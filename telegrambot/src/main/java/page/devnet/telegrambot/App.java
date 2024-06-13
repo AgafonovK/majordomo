@@ -21,6 +21,8 @@ public class App {
                     var statisticPlugin = new WordStatisticPlugin(new Statistics(repositoryManager.buildWordStorageRepository()), repositoryManager.buildUserRepository());
                     var yesnoplug = new YesNoPlugin();
                     var pluginManager = new PluginManager<>(statisticPlugin, new WordLimiterPlugin(repositoryManager.buildUnsubscribeRepository()), yesnoplug);
+                    AdministrationPlugin administrationPlugin = new AdministrationPlugin(pluginManager);
+                    pluginManager.enableAdminPlugin(administrationPlugin);
                     return pluginManager;
                 },
                 new TenantIdExtractor()
